@@ -36,6 +36,14 @@ $databases['default']['default'] = [
 13. Add project files to git: `git add .`
 13. Create initial commit: `git commt -m "Init commit."`
 
+## Sub-theme
+This template contains the bash script for Bootstrap 3 SASS sub-theme generation with the contains features:
+* GULP
+* BrowserSync
+* Drush command for style compilation (optional)
+
+To generate sub-theme use: `.\theme.sh` 
+
 ## Usage
 
 * To install a Drupal module/theme, use: `composer require drupal/[module_machine_name]:[version]`
