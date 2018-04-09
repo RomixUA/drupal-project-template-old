@@ -24,7 +24,7 @@ tar xf tmp/bootstrap.tar.gz -C tmp
 mkdir -p ./themes/custom
 cp -R ./tmp/bootstrap/starterkits/sass ./themes/custom/"$machine_name"
 mv ./themes/custom/"$machine_name"/THEMENAME.starterkit.yml ./themes/custom/"$machine_name"/THEMENAME.info.yml
-sed -i -- 's/bootstrap\/assets/\/libraries\/bootstrap-sass/g' ./themes/custom/"$machine_name"/THEMENAME.libraries.yml
+sed -i -- 's/bootstrap\/assets/\/libraries\/bootstrap-sass\/assets/g' ./themes/custom/"$machine_name"/THEMENAME.libraries.yml
 sed -i -- 's/\.\/THEMENAME\/bootstrap\/assets/..\/..\/..\/..\/libraries\/bootstrap-sass\/assets/g' ./themes/custom/"$machine_name"/scss/*.*
 sed -i -- 's/\.\.\/bootstrap\/assets/..\/..\/..\/..\/libraries\/bootstrap-sass\/assets/g' ./themes/custom/"$machine_name"/scss/*.*
 find ./themes/custom/"$machine_name" -type f -exec sed -i "s/THEMENAME/$machine_name/g" {} +
@@ -217,5 +217,7 @@ gulp.task('sass', function () {
 
 EOF
 echo "$theme_name" Bootstrap sub-theme was created successfully.
-echo Run \'composer update drupal/"$machine_name"\' to install all theme dependencies.
+if [ -f "composer.lock" ]; then
+    echo Run \'composer update drupal/"$machine_name"\' to install all theme dependencies.
+fi
 rm -rf ./tmp
